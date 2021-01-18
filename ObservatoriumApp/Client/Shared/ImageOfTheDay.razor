@@ -1,0 +1,37 @@
+﻿@using Models
+@using System.Web
+@inject HttpClient Http
+
+@if (_apod is null)
+{
+    <p class="p-3">Loading image...</p>
+}
+else
+{
+    <div class="col-sm-8">
+        <h2>@_apod.Title</h2>
+        <img src=@_apod.ImageUrl class="img-fluid" alt="Responsive image">
+        <p>@_apod.Description</p>
+        
+    </div>
+}
+
+@code {
+
+    private Apod _apod;
+    private string _apiKey = "";
+    private string _requestUri = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var builder = new UriBuilder(NamingsHelper.ApodApi);
+        var query = HttpUtility.ParseQueryString(builder.Query);
+        query["api_key"] = "ZCUq6bWx0EzP4xQ1DdlkwtTU6XEhK5gsluy4YwN2";
+
+        builder.Query = query.ToString();
+
+
+        _apod = await Http.GetFromJsonAsync<Apod>(builder.ToString());
+    }
+}

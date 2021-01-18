@@ -24,7 +24,7 @@ namespace ObservatoriumApp.Server.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("test")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

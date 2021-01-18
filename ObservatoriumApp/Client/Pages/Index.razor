@@ -1,7 +1,18 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<div class="container">
+    <div class="row">
+        @foreach (var category in _categories)
+        {
+        <CategoryCard Category=@category />
+        }
+    </div>
+</div>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    private List<Category> _categories = new List<Category>()
+    {
+        new Category {Title = "Astronomy Picture of the Day", ImageSource = "", Description = ""},
+        new Category {Title = "NASA Image and Video Library" , ImageSource = "", Description = ""}
+    };
+}

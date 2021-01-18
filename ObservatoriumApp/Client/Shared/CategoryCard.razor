@@ -1,0 +1,13 @@
+﻿<div class="col card">
+    <img src=@Category.ImageSource class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">@Category.Title</h5>
+        <p class="card-text">@Category.Description</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Category Category { get; set; }
+}
